@@ -1,0 +1,5 @@
+# Bookzin — https://bookzin.app
+User-agent: *
+Allow: /
+
+Sitemap: https://bookzin.app/sitemap.xml

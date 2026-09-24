@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookzin — sua estante, com a contagem de dias</title>
+<meta name="description" content="Bookzin é o app de leitura que conta em quantos dias você leu cada livro, organiza as séries sozinho, trata livro largado sem culpa e deixa você ler junto com as amigas no Bookzin Club.">
+<link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="/icone-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/icone-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/icone-192.png">
+<link rel="canonical" href="https://bookzin.app/">
+<!-- Como o link aparece colado no WhatsApp: no começo, quase toda visita vem de lá. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bookzin">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://bookzin.app/">
+<meta property="og:title" content="Bookzin — sua estante, com a contagem de dias">
+<meta property="og:description" content="Em quantos dias você leu cada livro, as séries em ordem sozinhas e um clube pra ler junto com as amigas.">
+<meta property="og:image" content="https://bookzin.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5EFE3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+  .heroi { padding-block: 40px 64px; }
+  .heroi .largura { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .heroi h1 { font-size: clamp(2.5rem, 6.4vw, 4.2rem); }
+  .heroi h1 em { font-style: normal; color: var(--coral); }
+  .heroi .sub { margin-top: 18px; font-size: 1.15rem; color: var(--tinta-2); max-width: 32rem; }
+  .heroi .acoes { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .heroi .nota { margin-top: 12px; font-size: .9rem; color: var(--tinta-3); }
+
+  /* a "tela" desenhada: cartões como os do app, não um print */
+  .vitrine { display: grid; gap: 14px; }
+  .livro { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center;
+           background: var(--superficie); border-radius: 22px; padding: 16px; box-shadow: 0 10px 30px rgba(32,30,29,.07); }
+  .capa { aspect-ratio: 2/3; border-radius: 8px; padding: 7px; font-family: var(--display); font-size: .62rem; line-height: 1.15; color: #FFFBF2; }
+  .capa.teal { background: #3C7286; } .capa.rosa { background: #EA9393; } .capa.amarelo { background: #F4D38A; color: #3D2F0C; }
+  .livro h3 { font-size: 1.12rem; }
+  .livro .autora { font-size: .88rem; color: var(--tinta-2); margin-top: 2px; }
+  .chip { display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px; font-size: .82rem; font-weight: 600; }
+  .chip.dias { background: var(--rosa); color: var(--rosa-texto); }
+  .chip.nota { background: var(--amarelo); color: var(--amarelo-texto); }
+  .serie { background: var(--superficie); border-radius: 22px; padding: 16px 18px; box-shadow: 0 10px 30px rgba(32,30,29,.07); }
+  .serie .barra { height: 8px; border-radius: 99px; background: var(--superficie-alt); margin-top: 10px; overflow: hidden; }
+  .serie .barra i { display: block; height: 100%; width: 60%; background: var(--teal); border-radius: 99px; }
+  .serie p { font-size: .88rem; color: var(--tinta-2); margin-top: 6px; }
+  .vitrine .livro:nth-child(2) { margin-left: 28px; }
+
+  .secao { padding-block: 48px; }
+  .secao > .largura > h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); max-width: 36rem; }
+  .grade { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+  .grade .cartao h3 { font-size: 1.35rem; margin-top: 10px; }
+  .grade .cartao p { margin-top: 8px; color: var(--tinta-2); }
+  .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--tinta); }
+  .ic.rosa { background: var(--rosa); color: var(--rosa-texto); } .ic.teal { background: var(--teal-claro); color: var(--teal); }
+  .ic.amarelo { background: var(--amarelo); color: var(--amarelo-texto); } .ic.creme { background: var(--superficie-alt); }
+
+  .clube { background: var(--teal-fundo); color: var(--sobre-teal); border-radius: 30px; padding: 40px 36px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; }
+  .clube h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); }
+  .clube p { margin-top: 12px; opacity: .88; }
+  .ranking { display: grid; gap: 10px; }
+  .ranking div { display: flex; align-items: center; gap: 12px; background: rgba(255,251,242,.1); border-radius: 16px; padding: 10px 14px; }
+  .ranking b { font-family: var(--display); font-weight: 400; font-size: 1.2rem; width: 1.4rem; }
+  .ranking span { flex: 1; }
+  .ranking small { opacity: .8; }
+
+  .seus-dados ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+  .seus-dados li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 10px; }
+  .seus-dados li::before { content: "✓"; color: var(--teal); font-weight: 700; }
+
+  @media (max-width: 52rem) {
+    .heroi .largura, .clube { grid-template-columns: 1fr; }
+    .grade { grid-template-columns: 1fr; }
+    .vitrine .livro:nth-child(2) { margin-left: 0; }
+    .clube { padding: 30px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="largura">
+    <a class="marca" href="/"><img src="/marca.png" alt="" width="38" height="38"><span>Bookzin</span></a>
+    <nav aria-label="Principal"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="heroi">
+    <div class="largura">
+      <div>
+        <h1>Terminou em <em>4&nbsp;dias</em>. O&nbsp;Bookzin conta pra&nbsp;você.</h1>
+        <p class="sub">O app de leitura que guarda sua estante, conta em quantos dias você leu cada livro, põe as séries em ordem sozinho — e deixa você ler junto com as amigas.</p>
+        <div class="acoes">
+          <a class="botao" aria-disabled="true">Em breve na App Store</a>
+        </div>
+        <p class="nota">Para iPhone. Estamos em teste com as primeiras leitoras.</p>
+      </div>
+      <div class="vitrine" aria-hidden="true">
+        <div class="livro">
+          <div class="capa rosa">Entre vacas e beijos</div>
+          <div><h3>Entre vacas e beijos</h3><p class="autora">Hannah Bailey</p><span class="chip dias">Dia 4 de leitura</span></div>
+        </div>
+        <div class="livro">
+          <div class="capa teal">A força que nos atrai</div>
+          <div><h3>A força que nos atrai</h3><p class="autora">Brittainy C. Cherry</p><span class="chip nota">★ 5 · 3 dias</span></div>
+        </div>
+        <div class="serie">
+          <span class="rotulo">Série</span>
+          <h3 style="font-size:1.12rem;margin-top:4px">Corte de Espinhos e Rosas</h3>
+          <div class="barra"><i></i></div>
+          <p>3 de 5 lidos — em ordem, sem você montar pasta nenhuma</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="largura">
+      <h2>Feito pra quem lê muito — e não quer planilha.</h2>
+      <div class="grade">
+        <article class="cartao">
+          <div class="ic rosa" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></div>
+          <h3>Os dias de cada livro</h3>
+          <p>Começou, terminou: o Bookzin conta. "No mesmo dia", "3 dias", "12 dias" — e a média do seu ano.</p>
+        </article>
+        <article class="cartao">
+          <div class="ic teal" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="18" x="3" y="3" rx="1"/><path d="M7 3v18"/><path d="M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z"/></svg></div>
+          <h3>Séries que se organizam</h3>
+          <p>Diga que o livro é da série e o número: ele vai pra prateleira certa, na ordem, mesmo que você escreva o nome de dois jeitos.</p>
+        </article>
+        <article class="cartao">
+          <div class="ic amarelo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/><path d="m14.5 7.5-5 5"/><path d="m9.5 7.5 5 5"/></svg></div>
+          <h3>Largar sem culpa</h3>
+          <p>Não engatou? Toque em "Parei". Ele guarda a página e o motivo, e dá pra retomar quando quiser.</p>
+        </article>
+        <article class="cartao">
+          <div class="ic creme" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M8 7v10"/><path d="M12 7v10"/><path d="M17 7v10"/></svg></div>
+          <h3>Achar o livro, até sem ISBN</h3>
+          <p>Leia o código de barras, a capa ou cole o link da Amazon. Não achou? Cadastre à mão com a sua foto da capa — e ele passa a existir pra todo mundo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="largura">
+      <div class="clube">
+        <div>
+          <span class="rotulo" style="color:inherit;opacity:.75">Bookzin Club</span>
+          <h2 style="margin-top:8px">Leia junto com quem você gosta.</h2>
+          <p>Cada uma lê os seus livros, e o clube conta quem está na frente. No mural, recado, foto e a frase que marcou — com o livro e a autora, pronta pra mandar no story.</p>
+          <p>Só quem está no clube vê. Entrar é de graça.</p>
+        </div>
+        <div class="ranking" aria-hidden="true">
+          <div><b>1</b><span>Ana</span><small>7 livros</small></div>
+          <div><b>2</b><span>Carol</span><small>5 livros</small></div>
+          <div><b>3</b><span>você</span><small>4 livros</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao seus-dados">
+    <div class="largura">
+      <h2>O que você escreveu é seu.</h2>
+      <ul>
+        <li>Veio do Bookmory? Traga sua estante inteira, com notas e datas — sem cadastrar um por um.</li>
+        <li>Leve tudo embora quando quiser, em planilha. De graça, sempre.</li>
+        <li>Apague a conta dentro do app, na hora.</li>
+        <li>Sem anúncios, sem vender dados, sem rastreamento. <a href="/privacidade/">Como tratamos seus dados</a>.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="largura">
+    <span>Bookzin · feito no Brasil, por quem lê</span>
+    <nav aria-label="Rodapé"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</footer>
+
+</body>
+</html>

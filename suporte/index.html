@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajuda — Bookzin</title>
+<meta name="description" content="Como falar com a gente, trazer sua estante do Bookmory, levar seus dados, denunciar, bloquear e apagar a conta no Bookzin.">
+<link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/icone-192.png">
+<link rel="canonical" href="https://bookzin.app/suporte/">
+<meta name="theme-color" content="#F5EFE3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+  .cabeca { padding-block: 24px 8px; }
+  .cabeca h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
+  .cabeca p { margin-top: 12px; color: var(--tinta-2); font-size: 1.1rem; }
+  .contato { margin-top: 28px; background: var(--teal-fundo); color: var(--sobre-teal); border-radius: 24px; padding: 26px 26px; }
+  .contato h2 { font-size: 1.6rem; }
+  .contato p { margin-top: 8px; opacity: .9; }
+  .contato a { color: inherit; font-weight: 700; }
+  .perguntas { margin-top: 36px; display: grid; gap: 12px; }
+  details { background: var(--superficie); border-radius: 18px; padding: 4px 22px; }
+  summary { cursor: pointer; list-style: none; padding: 16px 0; font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--teal); font-size: 1.3rem; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p, details ol { margin: 0 0 18px; color: var(--tinta-2); }
+  details ol { padding-left: 1.2rem; display: grid; gap: 4px; }
+  b.caminho { color: var(--tinta); font-weight: 600; }
+  mark.pendente { background: var(--amarelo); color: var(--amarelo-texto); padding: 0 .3em; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="largura">
+    <a class="marca" href="/"><img src="/marca.png" alt="" width="38" height="38"><span>Bookzin</span></a>
+    <nav aria-label="Principal"><a href="/suporte/" aria-current="page">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</header>
+
+<main class="estreita">
+  <section class="cabeca">
+    <h1>Ajuda</h1>
+    <p>As respostas pro que mais perguntam. Não achou? Escreva pra gente — quem responde é quem faz o app.</p>
+  </section>
+
+  <section class="contato" aria-labelledby="fale">
+    <h2 id="fale">Fale com a gente</h2>
+    <p>E-mail: <mark class="pendente">E-MAIL DE CONTATO</mark></p>
+    <p>Se algo deu errado no app, mande junto o diário: <b>Perfil → role até o fim → Ver o diário do app → Copiar tudo</b>, e cole no e-mail. Ajuda muito a achar o problema.</p>
+  </section>
+
+  <section class="perguntas" aria-label="Perguntas frequentes">
+    <details>
+      <summary>Vim do Bookmory. Dá pra trazer minha estante?</summary>
+      <ol>
+        <li>No Bookmory, exporte sua lista em Excel e salve o arquivo no iPhone.</li>
+        <li>No Bookzin: <b class="caminho">Perfil → Trazer minha estante → Bookmory</b>, e escolha o arquivo.</li>
+        <li>Confira a prévia e toque em trazer.</li>
+      </ol>
+      <p>Livro que já está no seu Bookzin fica como está — não trazemos de novo. Datas, notas e séries podem chegar incompletas: vale dar uma olhada na estante depois. Goodreads, StoryGraph e planilha estão chegando.</p>
+    </details>
+
+    <details>
+      <summary>Como levo meus dados embora?</summary>
+      <p><b class="caminho">Perfil → Levar minha estante</b>. Sai um arquivo que abre no Excel, no Numbers e no Google Planilhas, com tudo: livros, datas, notas, comentários e metas. É de graça, sempre.</p>
+    </details>
+
+    <details>
+      <summary>Não acho meu livro na busca</summary>
+      <p>Muito livro publicado direto na Amazon não tem ISBN, e por isso não existe em catálogo nenhum. Tente colar o link da Amazon na busca. Se não aparecer, toque em <b class="caminho">"O livro não existe em lugar nenhum? Escreva à mão"</b> — com a sua foto da capa, ele passa a existir pra todas as leitoras.</p>
+    </details>
+
+    <details>
+      <summary>Larguei um livro. E agora?</summary>
+      <p>Na página dele, toque em <b class="caminho">Parei</b>. O Bookzin guarda a página e o motivo, e o livro vai pra Abandonados — de lá dá pra retomar quando quiser. Largar não é erro.</p>
+    </details>
+
+    <details>
+      <summary>Como entro num clube?</summary>
+      <p>Peça o código de seis letras pra quem criou o clube. No app: aba <b class="caminho">Club → Entrar com um código</b>. Entrar é de graça; criar um clube é do Bookzin Pro.</p>
+    </details>
+
+    <details>
+      <summary>Vi um recado, uma capa ou um livro impróprio</summary>
+      <ol>
+        <li><b class="caminho">Recado do clube:</b> toque nos três pontinhos do recado → Denunciar recado.</li>
+        <li><b class="caminho">Capa:</b> na página do livro, "Escolher ou denunciar a capa".</li>
+        <li><b class="caminho">Livro cadastrado à mão:</b> na tela antes de adicionar, "Denunciar este livro".</li>
+      </ol>
+      <p>Some pra você na hora. Conteúdo ofensivo ou com dado pessoal sai do ar pra todas até a gente revisar.</p>
+    </details>
+
+    <details>
+      <summary>Quero parar de ver os recados de alguém</summary>
+      <p>Nos três pontinhos do recado da pessoa, <b class="caminho">Bloquear</b>. Os recados dela somem pra você em todos os clubes, e ela não fica sabendo. Pra desfazer: <b class="caminho">Perfil → Pessoas bloqueadas</b>.</p>
+    </details>
+
+    <details>
+      <summary>Esqueci minha senha</summary>
+      <p>Na tela de entrar, toque em <b class="caminho">Esqueci minha senha</b> e siga o e-mail que chegar.</p>
+    </details>
+
+    <details>
+      <summary>Como apago minha conta?</summary>
+      <p><b class="caminho">Perfil → role até o fim → Apagar minha conta</b>. Antes do botão, o app mostra o que some e o que fica. É na hora e sem volta. Detalhes na <a href="/privacidade/">política de privacidade</a>.</p>
+    </details>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="largura">
+    <span>Bookzin · feito no Brasil, por quem lê</span>
+    <nav aria-label="Rodapé"><a href="/">Início</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</footer>
+
+</body>
+</html>

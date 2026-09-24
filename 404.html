@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookzin</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/icone-192.png">
+<!-- ⚠️ O convite do clube chega no WhatsApp como bookzin.app/club/LUAR42. O site é estático
+     (GitHub Pages), e todo endereço que não existe cai AQUI — então esta página faz as duas
+     coisas: é o convite quando o endereço é de clube, e o "não achei" quando não é.
+     A prévia do link no WhatsApp é a do og:* abaixo (o WhatsApp não roda JavaScript). -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bookzin">
+<meta property="og:title" content="Vem ler comigo no Bookzin 📚">
+<meta property="og:description" content="Um convite pro Bookzin Club: cada uma lê os seus livros, e o clube conta junto quem está na frente.">
+<meta property="og:image" content="https://bookzin.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5EFE3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+  main { padding-block: 32px 0; text-align: center; }
+  .icone { width: 88px; height: 88px; border-radius: 22px; margin: 0 auto; box-shadow: 0 12px 30px rgba(32,30,29,.12); }
+  h1 { font-size: clamp(2rem, 6vw, 2.8rem); margin-top: 22px; }
+  .sub { margin-top: 12px; color: var(--tinta-2); font-size: 1.1rem; }
+  .codigo { margin: 26px auto 0; display: inline-block; background: var(--superficie); border-radius: 20px; padding: 14px 26px; }
+  .codigo span { display: block; }
+  .codigo strong { font-family: var(--display); font-weight: 400; font-size: 2.4rem; letter-spacing: .12em; color: var(--teal); }
+  .acoes { margin-top: 26px; display: grid; gap: 12px; justify-content: center; }
+  .passos { margin: 34px auto 0; max-width: 26rem; text-align: left; background: var(--superficie); border-radius: 20px; padding: 20px 24px; }
+  .passos ol { margin: 10px 0 0; padding-left: 1.2rem; display: grid; gap: 6px; color: var(--tinta-2); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="largura">
+    <a class="marca" href="/"><img src="/marca.png" alt="" width="38" height="38"><span>Bookzin</span></a>
+    <nav aria-label="Principal"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</header>
+
+<main class="estreita">
+  <!-- convite -->
+  <section id="convite" hidden>
+    <img class="icone" src="/icone-192.png" alt="">
+    <h1>Te chamaram pra um clube de leitura</h1>
+    <p class="sub">No Bookzin Club cada uma lê os seus livros, e o clube conta junto quem está na frente.</p>
+    <div class="codigo"><span class="rotulo">código do clube</span><strong id="codigo">······</strong></div>
+    <div class="acoes">
+      <a class="botao" id="abrir" href="#">Abrir no Bookzin</a>
+      <button class="botao contorno" id="copiar" type="button">Copiar o código</button>
+    </div>
+    <div class="passos">
+      <span class="rotulo">ainda não tem o Bookzin?</span>
+      <ol>
+        <li>O Bookzin está em teste e chega em breve na App Store. Peça o convite do teste pra quem te chamou.</li>
+        <li>Com o app instalado, abra a aba <b>Club → Entrar com um código</b>.</li>
+        <li>Digite o código acima. Entrar é de graça.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- não achei -->
+  <section id="nao-achei" hidden>
+    <h1>Essa página não existe</h1>
+    <p class="sub">Talvez o link tenha chegado cortado.</p>
+    <div class="acoes"><a class="botao" href="/">Ir pro início</a></div>
+  </section>
+</main>
+
+<script>
+  // Mesma regra do app (`codigoDeClubeDoLink`): 6 letras do alfabeto do clube, sem O/0 e I/1,
+  // que ninguém lê direito num código passado por mensagem.
+  var ALFABETO = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  var partes = location.pathname.split("/").filter(Boolean);
+  var codigo = partes[0] && partes[0].toLowerCase() === "club" && partes[1] ? partes[1].toUpperCase() : "";
+  var valido = codigo.length === 6 && codigo.split("").every(function (c) { return ALFABETO.indexOf(c) >= 0; });
+  if (valido) {
+    document.title = "Convite pro clube " + codigo + " — Bookzin";
+    document.getElementById("codigo").textContent = codigo;
+    document.getElementById("abrir").href = "bookzin://club/" + codigo;
+    document.getElementById("convite").hidden = false;
+    document.getElementById("copiar").addEventListener("click", function () {
+      var b = this;
+      (navigator.clipboard ? navigator.clipboard.writeText(codigo) : Promise.reject())
+        .then(function () { b.textContent = "Código copiado ✓"; })
+        .catch(function () { b.textContent = "Código: " + codigo; });
+    });
+  } else {
+    document.getElementById("nao-achei").hidden = false;
+  }
+</script>
+</body>
+</html>
