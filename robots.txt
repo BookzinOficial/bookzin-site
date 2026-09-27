@@ -1,5 +1,5 @@
-# Bookzin — https://bookzin.app
+# Bookzin — https://bookzin.com.br
 User-agent: *
 Allow: /
 
-Sitemap: https://bookzin.app/sitemap.xml
+Sitemap: https://bookzin.com.br/sitemap.xml

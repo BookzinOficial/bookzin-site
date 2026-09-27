@@ -1,7 +1,7 @@
 # bookzin-site
 
-O site do Bookzin (https://bookzin.app): HTML simples, sem build, publicado pelo GitHub Pages —
-o mesmo jeito do site do Max IPTV. Montado em 23/09/2026, antes do domínio existir.
+O site do Bookzin (https://bookzin.com.br): HTML simples, sem build, publicado pelo GitHub Pages —
+o mesmo jeito do site do Max IPTV. Montado em 23/09/2026, antes do domínio existir. Domínio `bookzin.com.br` comprado pelo Edu em 27/09/2026 (no Registro.br, no nome dele).
 
 | página | pra quê |
 |---|---|
@@ -16,7 +16,7 @@ o mesmo jeito do site do Max IPTV. Montado em 23/09/2026, antes do domínio exis
    responsável (nome ou razão social + CPF/CNPJ), e-mail de contato, data de vigência, idade
    mínima (sugestão: 13) e os prazos de cópia de segurança do Supabase. Estão em
    `privacidade/index.html` e `suporte/index.html` (`grep -rn pendente`).
-2. **Domínio**: o `CNAME` diz `bookzin.app`. Se for outro, trocar ali e em todo `https://bookzin.app`.
+2. **Domínio**: o `CNAME` diz `bookzin.com.br`. Se for outro, trocar ali e em todo `https://bookzin.com.br`.
 3. "Esqueci minha senha" (em `/suporte/`) só funciona pra todo mundo depois do SMTP próprio no
    Supabase — o e-mail embutido só escreve pra quem é do projeto.
 
@@ -24,15 +24,16 @@ o mesmo jeito do site do Max IPTV. Montado em 23/09/2026, antes do domínio exis
 
 1. Repositório público `BookzinOficial/bookzin-site` com estes arquivos.
 2. GitHub → Settings → Pages → branch `main`, pasta `/`.
-3. No DNS do domínio (Cloudflare): registros A do GitHub Pages (185.199.108–111.153) e CNAME
-   `www` → `bookzinoficial.github.io`. Depois, em Pages, marcar "Enforce HTTPS"
-   (o `.app` só abre com HTTPS).
+3. No DNS do domínio — **Registro.br → bookzin.com.br → DNS → Editar zona** (o domínio usa o
+   DNS do próprio Registro.br, não precisa de Cloudflare): quatro registros A do GitHub Pages
+   (185.199.108.153, .109.153, .110.153, .111.153) e CNAME `www` → `bookzinoficial.github.io`.
+   Depois, em Pages, marcar "Enforce HTTPS".
 
 ## Depois
 
 - **Convite do clube com link https**: o app hoje manda só o código (o WhatsApp não deixa
   clicável um `bookzin://`). Com o site no ar, a mensagem (`mensagemDoConvite`, no contrato)
-  pode levar `https://bookzin.app/club/CODIGO`.
+  pode levar `https://bookzin.com.br/club/CODIGO`.
 - **Abrir o app direto pelo link** (Universal Links): precisa do Developer Program — arquivo
   `/.well-known/apple-app-site-association` aqui e o "Associated Domains" no app.
 - `og.png` sai de `swift tools/GerarOG.swift`.
