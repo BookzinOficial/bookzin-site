@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-  .heroi { padding-block: 40px 64px; }
+  .heroi { padding-block: 40px 56px; }
   .heroi .largura { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
   .heroi h1 { font-size: clamp(2.5rem, 6.4vw, 4.2rem); }
   .heroi h1 em { font-style: normal; color: var(--coral); }
@@ -35,31 +35,54 @@
   .heroi .acoes { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
   .heroi .nota { margin-top: 12px; font-size: .9rem; color: var(--tinta-3); }
 
-  /* a "tela" desenhada: cartões como os do app, não um print */
+  /* os cartões do topo, como os do app — com as capas de verdade do acervo */
   .vitrine { display: grid; gap: 14px; }
   .livro { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center;
            background: var(--superficie); border-radius: 22px; padding: 16px; box-shadow: 0 10px 30px rgba(32,30,29,.07); }
-  .capa { aspect-ratio: 2/3; border-radius: 8px; padding: 7px; font-family: var(--display); font-size: .62rem; line-height: 1.15; color: #FFFBF2; }
-  .capa.teal { background: #3C7286; } .capa.rosa { background: #EA9393; } .capa.amarelo { background: #F4D38A; color: #3D2F0C; }
+  .livro img, .serie .capas img { aspect-ratio: 2/3; width: 100%; height: auto; object-fit: cover; border-radius: 8px;
+           box-shadow: 0 4px 10px rgba(32,30,29,.18); }
   .livro h3 { font-size: 1.12rem; }
   .livro .autora { font-size: .88rem; color: var(--tinta-2); margin-top: 2px; }
   .chip { display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px; font-size: .82rem; font-weight: 600; }
   .chip.dias { background: var(--rosa); color: var(--rosa-texto); }
   .chip.nota { background: var(--amarelo); color: var(--amarelo-texto); }
-  .serie { background: var(--superficie); border-radius: 22px; padding: 16px 18px; box-shadow: 0 10px 30px rgba(32,30,29,.07); }
-  .serie .barra { height: 8px; border-radius: 99px; background: var(--superficie-alt); margin-top: 10px; overflow: hidden; }
-  .serie .barra i { display: block; height: 100%; width: 60%; background: var(--teal); border-radius: 99px; }
-  .serie p { font-size: .88rem; color: var(--tinta-2); margin-top: 6px; }
+  .serie { background: var(--superficie); border-radius: 22px; padding: 16px 18px; box-shadow: 0 10px 30px rgba(32,30,29,.07);
+           display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: center; }
+  .serie .capas { display: flex; grid-row: span 3; }
+  .serie .capas img { width: 38px; }
+  .serie .capas img + img { margin-left: -14px; }
+  .serie .barra { height: 8px; border-radius: 99px; background: var(--superficie-alt); overflow: hidden; }
+  .serie .barra i { display: block; height: 100%; width: 67%; background: var(--teal); border-radius: 99px; }
+  .serie p { font-size: .88rem; color: var(--tinta-2); }
   .vitrine .livro:nth-child(2) { margin-left: 28px; }
 
   .secao { padding-block: 48px; }
   .secao > .largura > h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); max-width: 36rem; }
-  .grade { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
-  .grade .cartao h3 { font-size: 1.35rem; margin-top: 10px; }
-  .grade .cartao p { margin-top: 8px; color: var(--tinta-2); }
+  .secao > .largura > .sub { margin-top: 12px; color: var(--tinta-2); max-width: 36rem; font-size: 1.08rem; }
+
+  /* cada bloco: texto de um lado, a tela de verdade do outro */
+  .bloco { display: grid; grid-template-columns: 1fr minmax(0, 300px); gap: 56px; align-items: center; margin-top: 56px; }
+  .bloco:nth-of-type(even) { grid-template-columns: minmax(0, 300px) 1fr; }
+  .bloco:nth-of-type(even) .texto { order: 2; }
+  .bloco h3 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); margin-top: 12px; }
+  .bloco .texto > p { margin-top: 10px; color: var(--tinta-2); }
+  .bloco ul { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+  /* o ✓ fica fora do fluxo: com grid, um link no meio da frase virava coluna própria */
+  .bloco li { position: relative; padding-left: 1.7rem; }
+  .bloco li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
   .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--tinta); }
   .ic.rosa { background: var(--rosa); color: var(--rosa-texto); } .ic.teal { background: var(--teal-claro); color: var(--teal); }
   .ic.amarelo { background: var(--amarelo); color: var(--amarelo-texto); } .ic.creme { background: var(--superficie-alt); }
+
+  /* o print: tela real do app, recortada no alto e esmaecendo embaixo */
+  .print { position: relative; border-radius: 30px; overflow: hidden; background: #F5EFE3;
+           box-shadow: 0 24px 60px rgba(32,30,29,.16), 0 0 0 1px var(--linha); }
+  .print img { width: 100%; height: auto; }
+  .print::after { content: ""; position: absolute; inset: auto 0 0 0; height: 18%;
+                  background: linear-gradient(to bottom, rgba(245,239,227,0), #F5EFE3); }
+  .print.inteiro::after { display: none; }
+  .par { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .bloco.largo { grid-template-columns: 1fr minmax(0, 460px); }
 
   .clube { background: var(--teal-fundo); color: var(--sobre-teal); border-radius: 30px; padding: 40px 36px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; }
   .clube h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); }
@@ -70,15 +93,32 @@
   .ranking span { flex: 1; }
   .ranking small { opacity: .8; }
 
-  .seus-dados ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
-  .seus-dados li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 10px; }
-  .seus-dados li::before { content: "✓"; color: var(--teal); font-weight: 700; }
+  /* baixar: no computador, o QR; no celular, o botão (não dá pra ler QR da própria tela) */
+  .baixe { background: var(--superficie); border-radius: 30px; padding: 40px 36px; display: grid;
+           grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .baixe h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); }
+  .baixe p { margin-top: 10px; color: var(--tinta-2); }
+  .baixe .lojas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .baixe .lojas span { padding: 8px 14px; border-radius: 12px; background: var(--superficie-alt); font-size: .9rem; font-weight: 600; }
+  .baixe .lojas small { display: block; font-weight: 500; color: var(--tinta-3); font-size: .78rem; }
+  .baixe .qr { text-align: center; }
+  .baixe .qr img { width: 168px; height: 168px; border-radius: 16px; box-shadow: 0 0 0 1px var(--linha); }
+  .baixe .qr small { display: block; margin-top: 8px; color: var(--tinta-3); font-size: .85rem; }
+  .baixe .so-celular { display: none; margin-top: 22px; }
+  @media (hover: none) and (pointer: coarse) {
+    .baixe { grid-template-columns: 1fr; }
+    .baixe .qr { display: none; }
+    .baixe .so-celular { display: inline-flex; }
+  }
 
   @media (max-width: 52rem) {
-    .heroi .largura, .clube { grid-template-columns: 1fr; }
-    .grade { grid-template-columns: 1fr; }
+    .heroi .largura, .clube, .baixe { grid-template-columns: 1fr; }
+    .bloco, .bloco:nth-of-type(even), .bloco.largo { grid-template-columns: 1fr; gap: 28px; margin-top: 48px; }
+    .bloco .tela.par { max-width: 460px; }
+    .bloco:nth-of-type(even) .texto { order: 0; }
+    .bloco .tela { max-width: 300px; width: 100%; margin-inline: auto; }
     .vitrine .livro:nth-child(2) { margin-left: 0; }
-    .clube { padding: 30px 22px; }
+    .clube, .baixe { padding: 30px 22px; }
   }
 </style>
 </head>
@@ -87,7 +127,7 @@
 <header class="topo">
   <div class="largura">
     <a class="marca" href="/"><img src="/marca.png" alt="" width="38" height="38"><span>Bookzin</span></a>
-    <nav aria-label="Principal"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+    <nav aria-label="Principal"><a href="#baixar">Baixar</a><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
   </div>
 </header>
 
@@ -98,53 +138,95 @@
         <h1>Terminou em <em>4&nbsp;dias</em>. O&nbsp;Bookzin conta pra&nbsp;você.</h1>
         <p class="sub">O app de leitura que guarda sua estante, conta em quantos dias você leu cada livro, põe as séries em ordem sozinho — e deixa você ler junto com as amigas.</p>
         <div class="acoes">
-          <a class="botao" aria-disabled="true">Em breve na App Store</a>
+          <a class="botao" href="#baixar">Baixar o Bookzin</a>
+          <a class="botao contorno" href="#tudo">O que dá pra fazer</a>
         </div>
         <p class="nota">Para iPhone. Estamos em teste com as primeiras leitoras.</p>
       </div>
       <div class="vitrine" aria-hidden="true">
         <div class="livro">
-          <div class="capa rosa">Entre vacas e beijos</div>
-          <div><h3>Entre vacas e beijos</h3><p class="autora">Hannah Bailey</p><span class="chip dias">Dia 4 de leitura</span></div>
+          <img src="/capas/ps-sempre-foi-voce.jpg" alt="" width="64" height="96">
+          <div><h3>PS: Sempre foi você</h3><p class="autora">Luana Karine</p><span class="chip dias">Dia 3 de leitura</span></div>
         </div>
         <div class="livro">
-          <div class="capa teal">A força que nos atrai</div>
+          <img src="/capas/a-forca-que-nos-atrai.jpg" alt="" width="64" height="96">
           <div><h3>A força que nos atrai</h3><p class="autora">Brittainy C. Cherry</p><span class="chip nota">★ 5 · 3 dias</span></div>
         </div>
         <div class="serie">
-          <span class="rotulo">Série</span>
-          <h3 style="font-size:1.12rem;margin-top:4px">Corte de Espinhos e Rosas</h3>
+          <div>
+            <span class="rotulo">Série</span>
+            <h3 style="font-size:1.12rem;margin-top:4px">Perverta-me</h3>
+          </div>
+          <div class="capas">
+            <img src="/capas/perverta-me.jpg" alt="" width="38" height="57">
+            <img src="/capas/fique-comigo.jpg" alt="" width="38" height="57">
+            <img src="/capas/segure-me.jpg" alt="" width="38" height="57">
+          </div>
           <div class="barra"><i></i></div>
-          <p>3 de 5 lidos — em ordem, sem você montar pasta nenhuma</p>
+          <p>2 de 3 lidos — em ordem, sem você montar pasta nenhuma</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="secao">
+  <section class="secao" id="tudo">
     <div class="largura">
       <h2>Feito pra quem lê muito — e não quer planilha.</h2>
-      <div class="grade">
-        <article class="cartao">
+      <p class="sub">Tudo o que aparece aqui é a tela de verdade do app.</p>
+
+      <div class="bloco">
+        <div class="texto">
+          <div class="ic creme" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <h3>Achar o livro, até sem ISBN</h3>
+          <p>Romance nacional publicado direto na Amazon não existe em catálogo nenhum. No Bookzin, existe.</p>
+          <ul>
+            <li>Busque pelo título, pela autora, pelo ISBN ou cole o link da Amazon.</li>
+            <li>Aponte a câmera pro código de barras — ou pra própria capa.</li>
+            <li>Não achou? Cadastre à mão, com a foto da sua capa. O livro passa a existir pra todas as leitoras.</li>
+          </ul>
+        </div>
+        <div class="tela"><div class="print"><img src="/app/busca.jpg" alt="Tela de busca do Bookzin com livros de Brittainy C. Cherry e suas capas" width="771" height="1200" loading="lazy"></div></div>
+      </div>
+
+      <div class="bloco">
+        <div class="texto">
           <div class="ic rosa" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></div>
           <h3>Os dias de cada livro</h3>
-          <p>Começou, terminou: o Bookzin conta. "No mesmo dia", "3 dias", "12 dias" — e a média do seu ano.</p>
-        </article>
-        <article class="cartao">
+          <p>Começou, terminou: o Bookzin conta. "No mesmo dia", "3 dias", "12 dias" — e a sua média.</p>
+          <ul>
+            <li>O que você está lendo agora, e há quantos dias.</li>
+            <li>Uma meta do seu tamanho, com o ritmo: "faltam 4 livros, 95 dias".</li>
+            <li>A fila do que vem depois, sempre à vista.</li>
+          </ul>
+        </div>
+        <div class="tela"><div class="print inteiro"><img src="/app/inicio.jpg" alt="Tela inicial do Bookzin: livro sendo lido há 3 dias, a fila com capas e a meta de 2026" width="552" height="1200" loading="lazy"></div></div>
+      </div>
+
+      <div class="bloco">
+        <div class="texto">
           <div class="ic teal" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="18" x="3" y="3" rx="1"/><path d="M7 3v18"/><path d="M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z"/></svg></div>
-          <h3>Séries que se organizam</h3>
-          <p>Diga que o livro é da série e o número: ele vai pra prateleira certa, na ordem, mesmo que você escreva o nome de dois jeitos.</p>
-        </article>
-        <article class="cartao">
-          <div class="ic amarelo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/><path d="m14.5 7.5-5 5"/><path d="m9.5 7.5 5 5"/></svg></div>
-          <h3>Largar sem culpa</h3>
-          <p>Não engatou? Toque em "Parei". Ele guarda a página e o motivo, e dá pra retomar quando quiser.</p>
-        </article>
-        <article class="cartao">
-          <div class="ic creme" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M8 7v10"/><path d="M12 7v10"/><path d="M17 7v10"/></svg></div>
-          <h3>Achar o livro, até sem ISBN</h3>
-          <p>Leia o código de barras, a capa ou cole o link da Amazon. Não achou? Cadastre à mão com a sua foto da capa — e ele passa a existir pra todo mundo.</p>
-        </article>
+          <h3>Sua estante, do seu jeito</h3>
+          <p>Séries que se organizam sozinhas, na ordem — mesmo que você escreva o nome de dois jeitos.</p>
+          <ul>
+            <li>Busque na estante, filtre por série e por nota, ordene pela data em que terminou.</li>
+            <li>Escolha a capa da sua edição entre as do acervo, ou mande a sua foto.</li>
+            <li>Não engatou? Toque em "Parei": ele guarda a página e o motivo, sem culpa.</li>
+          </ul>
+        </div>
+        <div class="tela"><div class="print"><img src="/app/uma-serie.jpg" alt="Uma série no Bookzin: três livros na ordem dos volumes, com nota e dias" width="771" height="1200" loading="lazy"></div></div>
+      </div>
+
+      <div class="bloco">
+        <div class="texto">
+          <div class="ic amarelo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+          <h3>Seu ano em livros</h3>
+          <p>Mês a mês, com as capas, a nota e quantos dias cada um levou.</p>
+          <ul>
+            <li>Quantos livros e quantas páginas no ano, e a sua nota média.</li>
+            <li>Conquistas pelo caminho: o primeiro livro, 10 livros, 50 livros…</li>
+          </ul>
+        </div>
+        <div class="tela"><div class="print"><img src="/app/feed.jpg" alt="Meu ano em livros: setembro e agosto, com capas, notas e dias de leitura" width="771" height="1200" loading="lazy"></div></div>
       </div>
     </div>
   </section>
@@ -167,15 +249,44 @@
     </div>
   </section>
 
-  <section class="secao seus-dados">
+  <section class="secao">
     <div class="largura">
-      <h2>O que você escreveu é seu.</h2>
-      <ul>
-        <li>Veio do Bookmory? Traga sua estante inteira, com notas e datas — sem cadastrar um por um.</li>
-        <li>Leve tudo embora quando quiser, em planilha. De graça, sempre.</li>
-        <li>Apague a conta dentro do app, na hora.</li>
-        <li>Sem anúncios, sem vender dados, sem rastreamento. <a href="/privacidade/">Como tratamos seus dados</a>.</li>
-      </ul>
+      <div class="bloco largo" style="margin-top:0">
+        <div class="texto">
+          <span class="rotulo">Seus dados</span>
+          <h3>O que você escreveu é seu.</h3>
+          <ul>
+            <li>Veio do Bookmory? Traga sua estante inteira, com notas e datas — sem cadastrar um por um.</li>
+            <li>Leve tudo embora quando quiser, em planilha. De graça, sempre.</li>
+            <li>Apague a conta dentro do app, na hora.</li>
+            <li>Sem anúncios, sem vender dados, sem rastreamento. <a href="/privacidade/">Como tratamos seus dados</a>.</li>
+          </ul>
+        </div>
+        <div class="tela par">
+          <div class="print"><img src="/app/trazer.jpg" alt="Trazer minha estante: importar do Bookmory" width="771" height="1200" loading="lazy"></div>
+          <div class="print"><img src="/app/levar.jpg" alt="Levar minha estante: exportar em CSV e JSON" width="771" height="1200" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="baixar">
+    <div class="largura">
+      <div class="baixe">
+        <div>
+          <h2>Baixe o Bookzin</h2>
+          <p>Estamos em teste com as primeiras leitoras. Quando o app chegar na loja, o mesmo endereço leva você direto pra lá.</p>
+          <div class="lojas">
+            <span>iPhone<small>App Store · em breve</small></span>
+            <span>Android<small>Google Play · nos planos</small></span>
+          </div>
+          <a class="botao so-celular" href="/baixar/">Baixar o Bookzin</a>
+        </div>
+        <div class="qr">
+          <img src="/qr-baixar.svg" alt="QR code que abre bookzin.com.br/baixar" width="168" height="168">
+          <small>Aponte a câmera do celular</small>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -183,7 +294,7 @@
 <footer class="rodape">
   <div class="largura">
     <span>Bookzin · feito no Brasil, por quem lê</span>
-    <nav aria-label="Rodapé"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+    <nav aria-label="Rodapé"><a href="/baixar/">Baixar</a><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
   </div>
 </footer>
 
