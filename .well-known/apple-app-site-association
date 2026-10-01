@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["CYBQCWC2CJ.br.com.bookzin.app"],
+        "components": [
+          { "/": "/club/*", "comment": "convite de clube: bookzin.com.br/club/CODIGO" },
+          { "/": "/abrir/*", "comment": "links dos e-mails (confirmar conta, trocar senha)" }
+        ]
+      }
+    ]
+  }
+}
