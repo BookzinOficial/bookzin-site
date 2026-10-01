@@ -3,3 +3,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://bookzin.com.br/sitemap.xml
+
+# Páginas de reserva dos links de e-mail: não são conteúdo.
+Disallow: /abrir/

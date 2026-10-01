@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abrir no Bookzin</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/icone-192.png">
+<meta name="theme-color" content="#F5EFE3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<!--
+  ⚠️ Esta página quase nunca é VISTA: no iPhone com o Bookzin instalado, o link do e-mail
+  (bookzin.com.br/abrir/<tipo>?token_hash=…) abre o app direto (Universal Link). Ela aparece
+  pra quem abriu o e-mail no computador, ou num iPhone sem o app. O botão leva o mesmo token
+  pelo esquema do app, que é a reserva. Nada daqui é guardado: é uma página parada, sem
+  servidor, e o token só serve uma vez.
+-->
+<style>
+  .abrir { padding-block: 40px 24px; text-align: center; }
+  .abrir h1 { font-size: clamp(2rem, 7vw, 3rem); }
+  .abrir p { margin: 14px auto 0; max-width: 30rem; color: var(--tinta-2); font-size: 1.05rem; }
+  .abrir .botao { margin-top: 26px; }
+  .abrir .nota { font-size: .92rem; color: var(--tinta-3); margin-top: 22px; }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="largura">
+    <a class="marca" href="/"><img src="/marca.png" alt="" width="38" height="38"><span>Bookzin</span></a>
+    <nav aria-label="Principal"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</header>
+<main class="abrir">
+  <div class="estreita">
+    <h1 id="titulo">Abra no Bookzin</h1>
+    <p id="texto">Este link é pra abrir no iPhone em que o Bookzin está instalado.</p>
+    <a class="botao" id="abrir" href="/baixar/">Abrir o Bookzin</a>
+    <p class="nota">Está no computador? Abra este mesmo e-mail no iPhone e toque no botão por lá.<br>Ainda não tem o app? <a href="/baixar/">Veja como instalar</a>.</p>
+  </div>
+</main>
+<script>
+  var TITULOS = { recuperar: "Escolha sua nova senha no Bookzin", confirmar: "Confirme sua conta no Bookzin", email: "Confirme seu novo e-mail no Bookzin" };
+  var tipo = location.pathname.split("/").filter(Boolean)[1] || "";
+  var token = new URLSearchParams(location.search).get("token_hash");
+  if (TITULOS[tipo]) document.getElementById("titulo").textContent = TITULOS[tipo];
+  if (TITULOS[tipo] && token) {
+    document.getElementById("abrir").href = "bookzin://" + tipo + "?token_hash=" + encodeURIComponent(token);
+  } else {
+    document.getElementById("texto").textContent = "Esse link está incompleto. Peça outro pelo app.";
+  }
+</script>
+<footer class="rodape">
+  <div class="largura">
+    <span>Bookzin · feito no Brasil, por quem lê</span>
+    <nav aria-label="Rodapé"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</footer>
+</body>
+</html>
