@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baixar o Bookzin</title>
-<meta name="description" content="Baixe o Bookzin, o app de leitura que conta em quantos dias você leu cada livro.">
+<title>Bookzin — versão beta</title>
+<meta name="description" content="O Bookzin está em versão beta: teste de graça no iPhone, pelo TestFlight, antes do lançamento na App Store.">
 <link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="/icone-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/icone-192.png">
@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="Bookzin">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://bookzin.com.br/baixar/">
-<meta property="og:title" content="Baixar o Bookzin">
-<meta property="og:description" content="O app de leitura que conta em quantos dias você leu cada livro.">
+<meta property="og:title" content="Bookzin — versão beta">
+<meta property="og:description" content="Teste o Bookzin no iPhone antes do lançamento na App Store.">
 <meta property="og:image" content="https://bookzin.com.br/og.png">
 <meta name="theme-color" content="#F5EFE3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,8 +27,12 @@
   público), basta pôr o endereço aqui — quem abrir no aparelho certo vai direto pra loja.
 -->
 <script>
+  // ⚠️ LOJAS é só pra LOJA OFICIAL: com endereço aqui, quem abre no aparelho certo é levado
+  // direto, sem ver esta página. O beta (TestFlight) NÃO entra aqui de propósito (30/09): a
+  // pessoa precisa ler que é versão de teste antes de instalar — o link do beta é o botão da
+  // página. Quando o app for pra App Store: pôr o endereço em `iphone` e tirar o bloco do beta.
   const LOJAS = {
-    iphone: null,   // ex.: "https://apps.apple.com/br/app/bookzin/id0000000000" ou o link público do TestFlight
+    iphone: null,   // ex.: "https://apps.apple.com/br/app/bookzin/id6817499265"
     android: null,  // ex.: "https://play.google.com/store/apps/details?id=br.com.bookzin.app"
   };
   const ua = navigator.userAgent;
@@ -56,6 +60,17 @@
   .qr p { font-size: .9rem; color: var(--tinta-3); margin-top: 10px; }
   html[data-aparelho="computador"] .qr { display: block; }
   .convite { margin-top: 28px; font-size: .95rem; color: var(--tinta-2); }
+  .selo-beta { display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--amarelo);
+               color: var(--amarelo-texto); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .baixar h1 { margin-top: 14px; }
+  .loja .botao { margin-top: 12px; min-height: 46px; padding: 0 20px; font-size: .95rem; }
+  .passos { text-align: left; max-width: 26rem; margin: 22px auto 0; padding: 0; list-style: none; counter-reset: p; display: grid; gap: 10px; }
+  .passos li { counter-increment: p; position: relative; padding-left: 2.2rem; color: var(--tinta-2); }
+  .passos li::before { content: counter(p); position: absolute; left: 0; top: .1rem; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+                       background: var(--teal-claro); color: var(--teal); font-weight: 700; font-size: .85rem; display: grid; place-items: center; }
+  .o-que-e { text-align: left; max-width: 26rem; margin: 28px auto 0; }
+  .o-que-e h2 { font-family: var(--corpo); font-weight: 700; font-size: 1.05rem; }
+  .o-que-e ul { margin: 10px 0 0; padding-left: 1.2rem; color: var(--tinta-2); display: grid; gap: 8px; font-size: .97rem; }
 </style>
 </head>
 <body>
@@ -69,16 +84,17 @@
 
 <main class="baixar">
   <div class="estreita">
-    <h1>Baixar o Bookzin</h1>
-    <p class="sub">Estamos em teste com as primeiras leitoras. Quando o app chegar na loja, este mesmo endereço leva você direto pra lá.</p>
+    <span class="selo-beta">Versão beta</span>
+    <h1>Teste o Bookzin antes do lançamento</h1>
+    <p class="sub">O Bookzin ainda não está na App Store. Esta é a <strong>versão beta</strong>: a de teste, de graça, aberta pras primeiras leitoras. Depois ele vai pra loja oficial.</p>
 
     <div class="lojas">
       <div class="cartao loja" id="loja-iphone">
         <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
         <div>
           <h2>iPhone</h2>
-          <p>App Store</p>
-          <span class="etiqueta">Em breve</span>
+          <p>Beta aberto, pelo TestFlight · vagas limitadas</p>
+          <a class="botao" href="https://testflight.apple.com/join/YA2SKdy9">Entrar no beta</a>
         </div>
       </div>
       <div class="cartao loja" id="loja-android">
@@ -91,12 +107,27 @@
       </div>
     </div>
 
+    <ol class="passos" aria-label="Como instalar no iPhone">
+      <li>Instale o <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a>, o app da própria Apple pra testar apps antes do lançamento.</li>
+      <li>Volte aqui e toque em <strong>Entrar no beta</strong>.</li>
+      <li>No TestFlight, toque em <strong>Instalar</strong>. Pronto: o Bookzin aparece na sua tela.</li>
+    </ol>
+
+    <div class="o-que-e">
+      <h2>O que quer dizer “beta”</h2>
+      <ul>
+        <li>É o app de verdade, mas ainda em teste: pode ter defeito. Achou um? Conte pra gente, é pra isso que o beta existe.</li>
+        <li>Sua estante fica guardada na sua conta. Quando o Bookzin for pra App Store, ela continua com você.</li>
+        <li>No lançamento oficial, este mesmo endereço passa a levar direto pra loja.</li>
+      </ul>
+    </div>
+
     <div class="qr">
       <img src="/qr-baixar.svg" alt="QR code que abre bookzin.com.br/baixar" width="200" height="200">
       <p>Aponte a câmera do celular</p>
     </div>
 
-    <p class="convite">Quer testar antes? Escreva pra <a href="mailto:contato@bookzin.com.br">contato@bookzin.com.br</a>.</p>
+    <p class="convite">Dúvida ou defeito? Escreva pra <a href="mailto:contato@bookzin.com.br">contato@bookzin.com.br</a>.</p>
   </div>
 </main>
 

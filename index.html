@@ -96,7 +96,9 @@
   /* baixar: no computador, o QR; no celular, o botão (não dá pra ler QR da própria tela) */
   .baixe { background: var(--superficie); border-radius: 30px; padding: 40px 36px; display: grid;
            grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
-  .baixe h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); }
+  .baixe h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); margin-top: 12px; }
+  .selo-beta { display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--amarelo);
+               color: var(--amarelo-texto); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
   .baixe p { margin-top: 10px; color: var(--tinta-2); }
   .baixe .lojas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
   .baixe .lojas span { padding: 8px 14px; border-radius: 12px; background: var(--superficie-alt); font-size: .9rem; font-weight: 600; }
@@ -138,10 +140,10 @@
         <h1>Terminou em <em>4&nbsp;dias</em>. O&nbsp;Bookzin conta pra&nbsp;você.</h1>
         <p class="sub">O app de leitura que guarda sua estante, conta em quantos dias você leu cada livro, põe as séries em ordem sozinho — e deixa você ler junto com as amigas.</p>
         <div class="acoes">
-          <a class="botao" href="#baixar">Baixar o Bookzin</a>
+          <a class="botao" href="#baixar">Testar a versão beta</a>
           <a class="botao contorno" href="#tudo">O que dá pra fazer</a>
         </div>
-        <p class="nota">Para iPhone. Estamos em teste com as primeiras leitoras.</p>
+        <p class="nota">Para iPhone. <strong>Versão beta</strong>: de teste, antes do lançamento na App Store.</p>
       </div>
       <div class="vitrine" aria-hidden="true">
         <div class="livro">
@@ -274,13 +276,14 @@
     <div class="largura">
       <div class="baixe">
         <div>
-          <h2>Baixe o Bookzin</h2>
-          <p>Estamos em teste com as primeiras leitoras. Quando o app chegar na loja, o mesmo endereço leva você direto pra lá.</p>
+          <span class="selo-beta">Versão beta</span>
+          <h2>Teste o Bookzin antes do lançamento</h2>
+          <p>O Bookzin ainda não está na App Store. Esta é a <strong>versão beta</strong>: a de teste, de graça, aberta pras primeiras leitoras — você instala pelo TestFlight, o app da própria Apple pra isso. Quando ele for pra loja oficial, o mesmo endereço leva você pra lá.</p>
           <div class="lojas">
-            <span>iPhone<small>App Store · em breve</small></span>
+            <span>iPhone<small>Beta aberto · vagas limitadas</small></span>
             <span>Android<small>Google Play · nos planos</small></span>
           </div>
-          <a class="botao so-celular" href="/baixar/">Baixar o Bookzin</a>
+          <a class="botao so-celular" href="/baixar/">Entrar no beta</a>
         </div>
         <div class="qr">
           <img src="/qr-baixar.svg" alt="QR code que abre bookzin.com.br/baixar" width="168" height="168">
