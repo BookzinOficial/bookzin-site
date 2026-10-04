@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Te indicaram um livro — Bookzin</title>
+<meta name="description" content="Alguém te indicou um livro pelo Bookzin, o app de estante pra quem lê. Toque pra ver o livro.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bookzin">
+<meta property="og:title" content="Te indicaram um livro 📚">
+<meta property="og:description" content="Toque pra ver o livro no Bookzin, o app de estante pra quem lê.">
+<meta property="og:image" content="https://bookzin.com.br/og.png">
+<meta property="og:url" content="https://bookzin.com.br/livro/">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/icone-192.png">
+<meta name="theme-color" content="#F5EFE3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<!--
+  ⚠️ "Olha esse livro" (ideia da Gabi, 03/10): bookzin.com.br/livro/?id=<id do livro>.
+  No iPhone com o Bookzin instalado o link abre o app direto na prévia do livro (Universal
+  Link) e esta página nem aparece. Ela é vista por quem não tem o app, ou quando o aplicativo
+  de mensagem abre o link num navegador próprio — aí o botão leva o mesmo id pelo esquema do app.
+  A página é parada (sem servidor): não sabe QUAL livro é, por isso não mostra título nem capa.
+-->
+<style>
+  .abrir { padding-block: 40px 24px; text-align: center; }
+  .abrir h1 { font-size: clamp(2rem, 7vw, 3rem); }
+  .abrir p { margin: 14px auto 0; max-width: 30rem; color: var(--tinta-2); font-size: 1.05rem; }
+  .abrir .botao { margin-top: 26px; }
+  .abrir .nota { font-size: .92rem; color: var(--tinta-3); margin-top: 22px; }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="largura">
+    <a class="marca" href="/"><img src="/marca.png" alt="" width="38" height="38"><span>Bookzin</span></a>
+    <nav aria-label="Principal"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</header>
+<main class="abrir">
+  <div class="estreita">
+    <h1>Te indicaram um livro</h1>
+    <p id="texto">Alguém achou que você ia gostar. Abra no Bookzin pra ver a capa e a sinopse — e pôr na sua estante, se quiser.</p>
+    <a class="botao" id="abrir" href="/baixar/">Abrir no Bookzin</a>
+    <p class="nota">Ainda não tem o Bookzin? É o app de estante pra quem lê, e está em teste aberto no iPhone.<br><a href="/baixar/">Veja como instalar</a> e depois toque de novo no link que você recebeu.</p>
+  </div>
+</main>
+<script>
+  // Mesma regra do app (`livroDoLink`): só vale id no formato do catálogo.
+  var id = (new URLSearchParams(location.search).get("id") || "").toLowerCase();
+  if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) {
+    document.getElementById("abrir").href = "bookzin://livro/" + id;
+  } else {
+    document.getElementById("texto").textContent = "Esse link chegou incompleto. Peça pra quem mandou enviar de novo.";
+  }
+</script>
+<footer class="rodape">
+  <div class="largura">
+    <span>Bookzin · feito no Brasil, por quem lê</span>
+    <nav aria-label="Rodapé"><a href="/suporte/">Ajuda</a><a href="/privacidade/">Privacidade</a></nav>
+  </div>
+</footer>
+</body>
+</html>

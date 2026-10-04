@@ -5,7 +5,8 @@
         "appIDs": ["CYBQCWC2CJ.br.com.bookzin.app"],
         "components": [
           { "/": "/club/*", "comment": "convite de clube: bookzin.com.br/club/CODIGO" },
-          { "/": "/abrir/*", "comment": "links dos e-mails (confirmar conta, trocar senha)" }
+          { "/": "/abrir/*", "comment": "links dos e-mails (confirmar conta, trocar senha)" },
+          { "/": "/livro/*", "comment": "olha esse livro: bookzin.com.br/livro/?id=ID" }
         ]
       }
     ]
