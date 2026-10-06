@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termos de uso do Bookzin</title>
+<meta name="description" content="As regras do Bookzin, escritas pra serem lidas: a sua conta, o que você publica no clube e como funciona a assinatura do Pro.">
+<link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/icone-192.png">
+<link rel="canonical" href="https://bookzin.com.br/termos/">
+<meta name="theme-color" content="#F5EFE3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+  /* Tokens da marca Bookzin (ios/App/DesignSystem/Cores.swift e Tipografia.swift). */
+  :root {
+    --fundo: #F5EFE3;
+    --superficie: #FFFBF2;
+    --superficie-alt: #E8DFCD;
+    --tinta: #201E1D;
+    --tinta-2: rgba(32, 30, 29, .62);
+    --tinta-3: rgba(32, 30, 29, .45);
+    --linha: rgba(32, 30, 29, .12);
+    --teal: #3C7286;
+    --coral: #B85C5C;
+    --rosa: #F1BEBE;
+    --rosa-texto: #8C3D3D;
+    --pendente-fundo: #F4D38A;
+    --pendente-texto: #5C4712;
+    --display: "Caprasimo", "Georgia", serif;
+    --corpo: "Figtree", -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fundo: #1B1917;
+      --superficie: #252220;
+      --superficie-alt: #34302B;
+      --tinta: #F2EBDD;
+      --tinta-2: rgba(242, 235, 221, .68);
+      --tinta-3: rgba(242, 235, 221, .5);
+      --linha: rgba(242, 235, 221, .14);
+      --teal: #86B9CB;
+      --coral: #E39A9A;
+      --rosa: #4A2A2A;
+      --rosa-texto: #F1BEBE;
+      --pendente-fundo: #4A3C18;
+      --pendente-texto: #F4D38A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fundo: #1B1917;
+    --superficie: #252220;
+    --superficie-alt: #34302B;
+    --tinta: #F2EBDD;
+    --tinta-2: rgba(242, 235, 221, .68);
+    --tinta-3: rgba(242, 235, 221, .5);
+    --linha: rgba(242, 235, 221, .14);
+    --teal: #86B9CB;
+    --coral: #E39A9A;
+    --rosa: #4A2A2A;
+    --rosa-texto: #F1BEBE;
+    --pendente-fundo: #4A3C18;
+    --pendente-texto: #F4D38A;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: var(--corpo);
+    font-size: 16px;
+    line-height: 1.6;
+    padding-inline: 20px;
+    padding-block: 40px 72px;
+  }
+  .pagina { max-width: 44rem; margin: 0 auto; display: grid; gap: 40px; }
+  h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.1rem, 6vw, 2.9rem); line-height: 1.1; }
+  h2 { font-size: 1.45rem; line-height: 1.25; }
+  h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 3px; }
+  .rotulo {
+    font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--tinta-3);
+  }
+  .cabeca { display: grid; gap: 10px; }
+  .cabeca .sub { color: var(--tinta-2); max-width: 36rem; }
+  .datas { color: var(--tinta-3); font-size: .9rem; }
+
+  /* Revisão: só existe no rascunho. Sai inteira antes de publicar. */
+  .revisao {
+    background: var(--pendente-fundo); color: var(--pendente-texto);
+    border-radius: 18px; padding: 20px 22px; display: grid; gap: 12px;
+  }
+  .revisao h2 { font-size: 1.15rem; color: var(--pendente-texto); }
+  .revisao ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 8px; }
+  .revisao .rotulo { color: var(--pendente-texto); opacity: .8; }
+  mark.pendente {
+    background: var(--pendente-fundo); color: var(--pendente-texto);
+    padding: 0 .3em; border-radius: 4px; font-weight: 600;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+
+  .resumo {
+    background: var(--superficie); border-radius: 18px; padding: 22px 24px;
+    display: grid; gap: 12px;
+  }
+  .resumo ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .resumo li { display: grid; grid-template-columns: 1.1rem 1fr; gap: 8px; }
+  .resumo li::before { content: "✓"; color: var(--teal); font-weight: 700; }
+  .resumo li.nao::before { content: "✕"; color: var(--coral); }
+
+  section { display: grid; gap: 14px; }
+  section > p, section li { max-width: 40rem; }
+  section ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 8px; }
+  .indice { color: var(--tinta-3); font-size: .95rem; margin-right: .35em; font-family: var(--corpo); font-weight: 600; }
+
+  .tabela { overflow-x: auto; border-radius: 14px; border: 1px solid var(--linha); background: var(--superficie); }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .93rem; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--linha); }
+  th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-3); font-weight: 700; background: var(--superficie-alt); }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 600; }
+
+  .duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 14px; }
+  .caixa { border-radius: 16px; padding: 18px 20px; display: grid; gap: 10px; align-content: start; }
+  .caixa ul { padding-left: 1.1rem; }
+  .some { background: var(--rosa); color: var(--rosa-texto); }
+  .some .rotulo { color: var(--rosa-texto); }
+  .fica { background: var(--superficie); border: 1px solid var(--linha); }
+
+  .terceiros { display: grid; gap: 0; border-top: 1px solid var(--linha); }
+  .terceiro { display: grid; grid-template-columns: minmax(9rem, 13rem) 1fr; gap: 6px 20px; padding: 14px 0; border-bottom: 1px solid var(--linha); }
+  .terceiro .nome { font-weight: 700; }
+  .terceiro .onde { color: var(--tinta-3); font-size: .85rem; font-weight: 500; }
+  @media (max-width: 34rem) { .terceiro { grid-template-columns: 1fr; } }
+
+  footer { color: var(--tinta-3); font-size: .88rem; border-top: 1px solid var(--linha); padding-top: 18px; }
+</style>
+</head>
+<body>
+
+<header style="max-width:44rem;margin:0 auto 28px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+  <a href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinta)"><img src="/marca.png" alt="" width="34" height="34" style="border-radius:9px"><span style="font-family:var(--display);font-size:1.35rem">Bookzin</span></a>
+  <a href="/suporte/" style="font-weight:600;font-size:.95rem">Ajuda</a>
+</header>
+<main class="pagina">
+
+  <header class="cabeca">
+    <span class="rotulo">Bookzin · Termos de uso</span>
+    <h1>As regras do Bookzin, em português claro</h1>
+    <p class="sub">Escritas pra serem lidas. Se algo aqui não estiver claro, isso é um defeito nosso: escreva pra gente.</p>
+    <p class="datas">Vigente a partir de 06/10/2026 · Versão 1</p>
+  </header>
+
+  <section aria-labelledby="quem">
+    <h2 id="quem"><span class="indice">1.</span>Quem somos</h2>
+    <p>O Bookzin é mantido por Luiz Eduardo Alves Coutinho. Contato: <a href="mailto:contato@bookzin.com.br">contato@bookzin.com.br</a>.</p>
+  </section>
+  <section aria-labelledby="quem-pode">
+    <h2 id="quem-pode"><span class="indice">2.</span>Quem pode usar</h2>
+    <p>Pessoas a partir de 13 anos. Se você tem menos de 18, use com o conhecimento de quem cuida de você.</p>
+  </section>
+  <section aria-labelledby="conta">
+    <h2 id="conta"><span class="indice">3.</span>Sua conta</h2>
+    <p>Você cria a conta com e-mail e senha e cuida da senha. Uma conta é de uma pessoa. Você pode apagar a conta a qualquer hora, dentro do app, em Perfil → Apagar minha conta: tudo que é seu some, na hora.</p>
+  </section>
+  <section aria-labelledby="seu">
+    <h2 id="seu"><span class="indice">4.</span>O que é seu</h2>
+    <p>A sua estante — livros, datas, notas, comentários — é sua, e você pode levar tudo embora quando quiser (Perfil → Levar minha estante), de graça, assinando ou não. Os livros e as capas do catálogo pertencem a quem os fez; o Bookzin só os mostra pra você organizar o que lê.</p>
+  </section>
+  <section aria-labelledby="clube">
+    <h2 id="clube"><span class="indice">5.</span>O que você publica no clube</h2>
+    <p>Recados e frases do mural são vistos por quem é do mesmo clube. Você é responsável pelo que escreve.</p>
+    <p>Não publique: ofensa, ameaça, assédio, discriminação, conteúdo sexual, nada que seja ilegal, trechos longos de livros (uma frase curta, com o nome do livro e da autora, é citação; páginas inteiras não são) e nem dados de outra pessoa sem a permissão dela.</p>
+    <p>Qualquer pessoa do clube pode <strong>denunciar</strong> um recado e <strong>bloquear</strong> quem incomoda. Recado denunciado é escondido enquanto olhamos. Podemos apagar o que quebrar estas regras e tirar do clube quem repetir. Dúvida ou denúncia por e-mail: <a href="mailto:contato@bookzin.com.br">contato@bookzin.com.br</a>.</p>
+  </section>
+  <section aria-labelledby="pro">
+    <h2 id="pro"><span class="indice">6.</span>O Bookzin Pro</h2>
+    <p>O Bookzin é grátis. O Pro é uma assinatura opcional, mensal ou anual, cobrada pela Apple na sua conta da App Store. Os preços aparecem na tela do Pro antes de você confirmar.</p>
+    <p>A assinatura <strong>renova sozinha</strong> no fim de cada período, pelo mesmo preço, até você cancelar. Você cancela em Ajustes do iPhone → seu nome → Assinaturas, pelo menos 24 horas antes da renovação. Reembolso segue as regras da Apple.</p>
+    <p>Se a assinatura acabar, você volta pro grátis e <strong>nada do que você guardou some</strong>: sua estante continua inteira e você continua podendo levá-la embora.</p>
+    <p>Enquanto o Bookzin está em teste, o Pro é de cortesia, sem cobrança, até a data que aparece na tela do Pro. Quando a assinatura começar, contas novas ganham 15 dias de Pro sem cobrança.</p>
+  </section>
+  <section aria-labelledby="servico">
+    <h2 id="servico"><span class="indice">7.</span>O serviço</h2>
+    <p>Fazemos o possível pra o Bookzin funcionar sempre, mas não prometemos que nunca vai falhar nem que vai existir pra sempre. Se um dia for encerrado, avisamos com antecedência, e você pode levar a sua estante.</p>
+  </section>
+  <section aria-labelledby="mudancas">
+    <h2 id="mudancas"><span class="indice">8.</span>Mudanças</h2>
+    <p>Se estes termos mudarem de um jeito que importa, avisamos no app antes. A versão e a data estão no alto desta página.</p>
+  </section>
+  <section aria-labelledby="lei">
+    <h2 id="lei"><span class="indice">9.</span>Lei</h2>
+    <p>Valem as leis do Brasil.</p>
+  </section>
+
+  <footer>
+    Bookzin · Termos de uso · Versão 1 · <a href="/">bookzin.com.br</a> · <a href="/suporte/">Ajuda</a> · <a href="/privacidade/">Privacidade</a>
+  </footer>
+</main>
+</body>
+</html>
