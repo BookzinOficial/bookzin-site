@@ -105,12 +105,19 @@
       <p>Na tela de entrar, toque em <b class="caminho">Esqueci minha senha</b> e siga o e-mail que chegar.</p>
     </details>
 
-    <details>
+    <details id="apagar-conta">
       <summary>Como apago minha conta?</summary>
-      <p><b class="caminho">Perfil → role até o fim → Apagar minha conta</b>. Antes do botão, o app mostra o que some e o que fica. É na hora e sem volta. Detalhes na <a href="/privacidade/">política de privacidade</a>.</p>
+      <p><b>No app:</b> <b class="caminho">Perfil → role até o fim → Apagar minha conta</b>. Antes do botão, o app mostra o que some e o que fica. É na hora e sem volta.</p>
+      <p><b>Sem o app</b> (já desinstalou, ou não consegue entrar): escreva para <a href="mailto:contato@bookzin.com.br?subject=Apagar%20minha%20conta">contato@bookzin.com.br</a>, do mesmo e-mail da sua conta, com o assunto <b>“Apagar minha conta”</b>. Apagamos em até 7 dias e respondemos confirmando. Detalhes do que some na <a href="/privacidade/#apagar">política de privacidade</a>.</p>
     </details>
   </section>
 </main>
+
+<script>
+  // Quem chega por /suporte/#apagar-conta (o link que vai no Google Play) já vê a resposta aberta.
+  const alvo = location.hash && document.querySelector(location.hash);
+  if (alvo && alvo.tagName === "DETAILS") alvo.open = true;
+</script>
 
 <footer class="rodape">
   <div class="largura">
