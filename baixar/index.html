@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Baixar o Bookzin</title>
-<meta name="description" content="Baixe o Bookzin de graça na App Store: sua estante, suas séries e seu ano em livros. Android em breve.">
+<meta name="description" content="Baixe o Bookzin de graça: na App Store (iPhone) ou, no Android, em 2 passos pelo teste do Google Play.">
 <link rel="icon" href="/icone-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="/icone-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/icone-192.png">
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://bookzin.com.br/baixar/">
 <meta property="og:title" content="Baixar o Bookzin">
-<meta property="og:description" content="O Bookzin está na App Store. Grátis pra baixar."> 
+<meta property="og:description" content="iPhone: App Store. Android: 2 passos pelo teste do Google Play. Grátis pra baixar."> 
 <meta property="og:image" content="https://bookzin.com.br/og.png">
 <meta name="theme-color" content="#F5EFE3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,6 +70,21 @@
   .o-que-e { text-align: left; max-width: 26rem; margin: 28px auto 0; }
   .o-que-e h2 { font-family: var(--corpo); font-weight: 700; font-size: 1.05rem; }
   .o-que-e ul { margin: 10px 0 0; padding-left: 1.2rem; color: var(--tinta-2); display: grid; gap: 8px; font-size: .97rem; }
+  .android { text-align: left; max-width: 26rem; margin: 40px auto 0; scroll-margin-top: 16px; }
+  .android h2 { font-size: 1.7rem; margin-top: 12px; }
+  .android > p { margin-top: 10px; color: var(--tinta-2); }
+  .android .antes { margin-top: 16px; padding: 14px 16px; border-radius: 16px; background: var(--superficie-alt); font-size: .95rem; color: var(--tinta-2); }
+  .etapas { list-style: none; padding: 0; margin: 22px 0 0; counter-reset: e; display: grid; gap: 14px; }
+  .etapas li { counter-increment: e; position: relative; padding: 18px 18px 18px 64px; border-radius: 20px; background: var(--superficie); box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+  .etapas li::before { content: counter(e); position: absolute; left: 16px; top: 16px; width: 34px; height: 34px; border-radius: 50%;
+                       background: var(--teal); color: var(--superficie); font-weight: 700; display: grid; place-items: center; }
+  .etapas h3 { font-family: var(--corpo); font-weight: 700; font-size: 1.05rem; }
+  .etapas .botao { margin-top: 10px; min-height: 46px; padding: 0 20px; font-size: .95rem; }
+  .etapas p { margin-top: 10px; font-size: .95rem; color: var(--tinta-2); }
+  .ajuda { margin-top: 22px; }
+  .ajuda h3 { font-family: var(--corpo); font-weight: 700; font-size: 1rem; }
+  .ajuda ul { margin: 8px 0 0; padding-left: 1.2rem; display: grid; gap: 8px; font-size: .95rem; color: var(--tinta-2); }
+  .obrigado { margin-top: 18px; font-size: .95rem; color: var(--tinta-2); }
 </style>
 </head>
 <body>
@@ -99,11 +114,48 @@
         <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
         <div>
           <h2>Android</h2>
-          <p>Google Play</p>
-          <span class="etiqueta">Em breve</span>
+          <p>Google Play · grátis · em 2 passos</p>
+          <a class="botao" href="#android">Ver como baixar</a>
         </div>
       </div>
     </div>
+
+    <!-- 27/11/2026: Android em TESTE FECHADO. O Google só mostra o app a quem está no grupo de testadores
+         (testadores-bookzin@googlegroups.com, "qualquer pessoa pode participar", ligado ao teste fechado no Play Console).
+         Quando o app entrar na loja oficial: apagar esta seção e pôr o endereço em LOJAS.android. -->
+    <section class="android" id="android">
+      <span class="selo-beta">Android · teste</span>
+      <h2>Baixar no Android em 2 passos</h2>
+      <p>No Android, o Bookzin ainda está no <strong>teste do Google</strong>. Por isso o Google pede que você entre na lista de testadores antes de baixar. Leva 1 minuto, e a loja oficial chega antes de você terminar o próximo capítulo. 😉</p>
+
+      <div class="antes">
+        <strong>Antes de começar:</strong> faça tudo <strong>no celular</strong>, com a <strong>mesma conta Google da Play Store</strong>.
+        Não sabe qual é? Abra a Play Store e toque na sua foto, no canto de cima.
+      </div>
+
+      <ol class="etapas">
+        <li>
+          <h3>Entre no grupo de testadores</h3>
+          <a class="botao" href="https://groups.google.com/g/testadores-bookzin">1. Entrar no grupo</a>
+          <p>Na página que abrir, toque em <strong>“Participar do grupo”</strong>. Se pedir, entre com a sua conta Google.</p>
+        </li>
+        <li>
+          <h3>Baixe o Bookzin</h3>
+          <a class="botao" href="https://play.google.com/apps/testing/br.com.bookzin.app">2. Baixar o Bookzin</a>
+          <p>Toque em <strong>“Tornar-se testador”</strong> (ou “Participar”). Depois, em <strong>“Baixar no Google Play”</strong> e em <strong>Instalar</strong>.</p>
+        </li>
+      </ol>
+
+      <div class="ajuda">
+        <h3>Não deu certo?</h3>
+        <ul>
+          <li><strong>Apareceu “não encontrado”?</strong> Faça o passo 1 primeiro. Se já fez, espere uns minutinhos e tente o passo 2 de novo.</li>
+          <li><strong>Conta errada:</strong> o grupo e a Play Store precisam estar na mesma conta Google.</li>
+          <li><strong>Ainda travou?</strong> Chama a gente no Instagram <a href="https://www.instagram.com/bookzinapp/">@bookzinapp</a> ou escreva pra <a href="mailto:contato@bookzin.com.br">contato@bookzin.com.br</a>.</li>
+        </ul>
+      </div>
+      <p class="obrigado">Fique com o app instalado: cada pessoa no teste ajuda o Bookzin a chegar na loja oficial. 💛</p>
+    </section>
 
     <div class="qr">
       <img src="/qr-baixar.svg" alt="QR code que abre bookzin.com.br/baixar" width="200" height="200">
